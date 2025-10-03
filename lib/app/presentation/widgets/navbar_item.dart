@@ -12,10 +12,11 @@ class NavbarItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       onTap: onPress,
       child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 5),
         width: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: isSelected ? Colors.lightBlueAccent.withAlpha(200) : Colors.transparent
+          color: isSelected ? Colors.blueAccent : Colors.transparent
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

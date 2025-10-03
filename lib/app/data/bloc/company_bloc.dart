@@ -38,13 +38,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
 
     on<RequestedResetState>(
       (event, emit)async{
-        emit(CompanyLoading());
-        await Future.delayed(
-          const Duration(milliseconds: 800),
-          () {
-            emit(CompanyInitial());
-          },
-        );
+        emit(CompanyInitial());
         
       },
     );

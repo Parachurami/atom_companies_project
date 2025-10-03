@@ -1,11 +1,28 @@
+import 'package:atom_companies_app/app/data/providers/bookmark_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BookmarksPage extends ConsumerWidget {
+class BookmarksPage extends ConsumerStatefulWidget {
   const BookmarksPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<BookmarksPage> createState() => _BookmarksPageState();
+}
+
+class _BookmarksPageState extends ConsumerState<BookmarksPage> {
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        ref.read(bookmarkProvider.notifier).loadBookMarks();
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text('Bookmarks'),

@@ -40,6 +40,8 @@ class CompanyModel {
   final String? about_company;
   @HiveField(14)
   final Map<String, dynamic>? rating_distribution;
+  @HiveField(15)
+  final String? logo;
   CompanyModel({
     required this.company_id,
     required this.name,
@@ -56,6 +58,7 @@ class CompanyModel {
     this.country,
     this.about_company,
     this.rating_distribution,
+    this.logo
   });
 
   CompanyModel copyWith({
@@ -91,6 +94,7 @@ class CompanyModel {
       country: country ?? this.country,
       about_company: about_company ?? this.about_company,
       rating_distribution: rating_distribution ?? this.rating_distribution,
+      logo: logo ?? logo
     );
   }
 
@@ -111,6 +115,7 @@ class CompanyModel {
       'country': country,
       'about_company': about_company,
       'rating_distribution': rating_distribution,
+      'logo':logo
     };
   }
 
@@ -131,6 +136,7 @@ class CompanyModel {
       country: map['country'] != null ? map['country'] as String : null,
       about_company: map['about_company'] != null ? map['about_company'] as String : null,
       rating_distribution: map['rating_distribution'] != null ? Map<String, dynamic>.from((map['rating_distribution'] as Map<String, dynamic>)) : null,
+      logo: map['logo'] != null ? map['logo'] as String : null
     );
   }
 
