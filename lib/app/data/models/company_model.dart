@@ -21,7 +21,7 @@ class CompanyModel {
   @HiveField(4)
   final String? trust_score;
   @HiveField(5)
-  final String rating;
+  final dynamic rating;
   @HiveField(6)
   final List<CategoryModel>? categories;
   @HiveField(7)
@@ -64,7 +64,7 @@ class CompanyModel {
     String? domain,
     String? review_count,
     String? trust_score,
-    String? rating,
+    dynamic rating,
     List<CategoryModel>? categories,
     String? phone,
     String? email,
@@ -121,7 +121,7 @@ class CompanyModel {
       domain: map['domain'] as String,
       review_count: map['review_count']?.toString(),
       trust_score: map['trust_score']?.toString(),
-      rating: map['rating'].toString(),
+      rating: map['rating'],
       categories: map['categories'] != null ? List<CategoryModel>.from((map['categories'] as List<dynamic>).map<CategoryModel?>((x) => CategoryModel.fromMap(x as Map<String,dynamic>),),) : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,

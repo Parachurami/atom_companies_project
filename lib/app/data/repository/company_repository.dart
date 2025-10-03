@@ -33,6 +33,7 @@ class CompanyRepository {
         },
       ).toList();
     }catch(err){
+      print(err.toString());
       rethrow;
     }
   }

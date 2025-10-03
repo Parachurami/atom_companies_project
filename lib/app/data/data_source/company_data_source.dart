@@ -25,7 +25,7 @@ class CompanyDataSource{
     }
   }
 
-  Future<List<Map<String, dynamic>>?>? searchCompanies(String query) async{
+  Future<List<dynamic>?>? searchCompanies(String query) async{
     try{
       final res = await http.get(
         Uri.https(
@@ -40,7 +40,11 @@ class CompanyDataSource{
           'x-rapidapi-host': 'trustpilot-company-and-reviews-data.p.rapidapi.com'
         }
       );
-      return jsonDecode(res.body)['data']['companies'];
+      if(query.isNotEmpty){
+        final result = jsonDecode(res.body)['data']['companies'];
+        return result;
+      }
+      return [];
     }catch(err){
       rethrow;
     }

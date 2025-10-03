@@ -10,3 +10,5 @@ class RequestedCompaniesSearch extends CompanyEvent{
 class RequestedComapnyDetail extends CompanyEvent{}
 
 class RequestedCompaniesList extends CompanyEvent{}
+
+class RequestedResetState extends CompanyEvent{}

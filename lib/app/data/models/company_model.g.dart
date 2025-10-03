@@ -22,7 +22,7 @@ class CompanyModelAdapter extends TypeAdapter<CompanyModel> {
       domain: fields[2] as String,
       review_count: fields[3] as String?,
       trust_score: fields[4] as String?,
-      rating: fields[5] as String,
+      rating: fields[5] as int,
       categories: (fields[6] as List?)?.cast<CategoryModel>(),
       phone: fields[7] as String?,
       email: fields[8] as String?,

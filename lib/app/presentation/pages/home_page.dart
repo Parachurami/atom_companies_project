@@ -49,13 +49,16 @@ class _HomePageState extends ConsumerState<HomePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SearchPage();
-                      },
-                    ),
-                  ),
+                  onTap: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return SearchPage();
+                        },
+                      ),
+                    );
+                    context.read<CompanyBloc>().add(RequestedResetState());
+                  },
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.only(

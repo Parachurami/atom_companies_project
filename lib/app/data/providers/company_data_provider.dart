@@ -1,23 +1,15 @@
 import 'package:atom_companies_app/app/data/models/company_model.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:hive_flutter/adapters.dart';
 
-final _companyBoxProvider = Provider<Box<List<CompanyModel>>>(
-  (ref) {
-    return Hive.box('company_box');
-  },
-);
 
 final companyDataProvider = StateNotifierProvider<CompanyDataNotifier, List<CompanyModel>>(
   (ref) {
-    return CompanyDataNotifier(box: ref.watch(_companyBoxProvider));
+    return CompanyDataNotifier();
   },
 );
 
 class CompanyDataNotifier extends StateNotifier<List<CompanyModel>> {
-  final Box<List<CompanyModel>> box;
-  CompanyDataNotifier({required this.box}):super([]);
+  CompanyDataNotifier():super([]);
   void getCompanies(List<CompanyModel> companies)async{
     // print('provider -> ${companies.runtimeType}');
     // final data = box.get('companies');

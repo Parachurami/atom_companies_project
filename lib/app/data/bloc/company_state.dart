@@ -9,6 +9,12 @@ final class CompanySuccess extends CompanyState{
   CompanySuccess({required this.companies});
 }
 
+final class CompanySearchSuccess extends CompanyState{
+  final List<CompanyModel> companies;
+  CompanySearchSuccess({required this.companies});
+
+}
+
 final class CompanyLoading extends CompanyState{}
 
 final class CompanyError extends CompanyState{

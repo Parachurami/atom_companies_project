@@ -28,13 +28,30 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
         try{
           final data = await repository.searchCompanies(event.query);
           if(data == null) return emit(CompanyError('Error Searhing for users'));
-          emit(CompanySuccess(companies: data));
+          emit(CompanySearchSuccess(companies: data));
         }catch(err){
           emit(CompanyError(err.toString()));
+          print(err.toString());
         }
       },
     );
+
+    on<RequestedResetState>(
+      (event, emit)async{
+        emit(CompanyLoading());
+        await Future.delayed(
+          const Duration(milliseconds: 800),
+          () {
+            emit(CompanyInitial());
+          },
+        );
+        
+      },
+    );
   }
+
+
+
   @override
   void onTransition(Transition<CompanyEvent, CompanyState> transition) {
     print(transition);
