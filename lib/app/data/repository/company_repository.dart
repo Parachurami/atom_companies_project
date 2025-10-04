@@ -38,15 +38,11 @@ class CompanyRepository {
     }
   }
 
-  Future<List<CompanyModel>?>? getCompanyDetails(String domain) async{
+  Future<CompanyModel?>? getCompanyDetails(String domain) async{
     try{
       final data = await dataSource.getCompanyDetail(domain);
       if(data == null) return null;
-      return data.map(
-        (e) {
-          return CompanyModel.fromMap(e);
-        },
-      ).toList();
+      return CompanyModel.fromMap(data);
     }catch(err){
       rethrow;
     }

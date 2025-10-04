@@ -78,7 +78,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               ],
                         ),
             );
-          }else if(state is CompanyLoading && companies.isEmpty){
+          }else if(state is CompanyLoading || companies.isEmpty){
             return Center(
               child: CircularProgressIndicator(color: Colors.blueAccent,),
             );

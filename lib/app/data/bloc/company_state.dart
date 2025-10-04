@@ -23,3 +23,8 @@ final class CompanyError extends CompanyState{
   CompanyError(this.message);
 
 }
+
+final class CompanyDetailLoaded extends CompanyState{
+  final CompanyModel company;
+  CompanyDetailLoaded(this.company);
+}

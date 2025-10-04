@@ -47,7 +47,10 @@ class _NavigationContainerState extends State<NavigationContainer> {
           
         ],
       ),
-      body: tabs[currentPage]
+      body: IndexedStack(
+        index: currentPage,
+        children: tabs,
+      )
     );
   }
 }

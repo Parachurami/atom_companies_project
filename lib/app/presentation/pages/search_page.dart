@@ -29,6 +29,7 @@ class _SearchPageState extends ConsumerState<SearchPage>{
   @override
   void dispose() {
     controller.dispose();
+    focusNode.dispose();
     super.dispose();
   }
   @override
@@ -45,37 +46,54 @@ class _SearchPageState extends ConsumerState<SearchPage>{
                   controller.clear();
                 }, icon: Icon(Icons.arrow_back)),
                 const SizedBox(height: 30,),
-            TextField(
+            // TextField(
+            //   controller: controller,
+            //   focusNode:focusNode,
+            //   onChanged: (value) async{
+            //     if(value.trim().isEmpty || controller.text.trim().isEmpty){
+            //       context.read<CompanyBloc>().add(RequestedResetState());
+            //       return;
+            //     }
+            //     await Future.delayed(
+            //       const Duration(milliseconds: 1200),
+            //       () {
+            //         context.read<CompanyBloc>().add(RequestedCompaniesSearch(controller.text.trim()));
+            //       },
+            //     );
+            //   },
+            //   decoration: InputDecoration(
+            //     focusedBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(20),
+            //       borderSide: BorderSide(
+            //         color: Colors.black
+            //       )
+            //     ),
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(20),
+            //       borderSide: BorderSide(
+            //         color: Colors.black
+            //       )
+            //     )
+            //   ),
+            // ),
+            
+            SearchBar(
+              backgroundColor: WidgetStatePropertyAll<Color>(Colors.white),
+              focusNode: focusNode,
               controller: controller,
-              focusNode:focusNode,
               onChanged: (value) async{
-                if(value.trim().isEmpty || controller.text.trim().isEmpty){
-                  context.read<CompanyBloc>().add(RequestedResetState());
-                  return;
-                }
                 await Future.delayed(
-                  const Duration(milliseconds: 1200),
+                  const Duration(seconds: 3),
                   () {
-                    context.read<CompanyBloc>().add(RequestedCompaniesSearch(controller.text.trim()));
+                    if(value.trim().isNotEmpty){
+                      context.read<CompanyBloc>().add(RequestedCompaniesSearch(value.trim()));
+                      return;
+                    }
+                    context.read<CompanyBloc>().add(RequestedResetState());
                   },
                 );
               },
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                    color: Colors.black
-                  )
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                    color: Colors.black
-                  )
-                )
-              ),
             ),
-            
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -42,6 +42,20 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
         
       },
     );
+
+    on<RequestedCompanyDetail>(
+      (event, emit) async{
+        emit(CompanyLoading());
+        try{
+          final data = await repository.getCompanyDetails(event.domain);
+          if(data == null) return emit(CompanyError('Error Loading Companies'));
+          print('company detail -> ${data}');
+          emit(CompanyDetailLoaded(data));
+        }catch(err){
+          emit(CompanyError(err.toString()));
+        }
+      },
+    );
   }
 
 

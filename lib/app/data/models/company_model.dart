@@ -119,6 +119,27 @@ class CompanyModel {
     };
   }
 
+  factory CompanyModel.fromDynamic(dynamic company){
+    return CompanyModel(
+      company_id: company.company_id as String,
+      name: company.name as String,
+      domain: company.domain as String,
+      review_count: company.review_count?.toString(),
+      trust_score: company.trust_score?.toString(),
+      rating: company.rating,
+      categories: company.categories,
+      phone: company.phone != null ? company.phone as String : null,
+      email: company.email != null ? company.email as String : null,
+      website: company.website != null ? company.website as String : null,
+      address: company.address != null ? company.address as String : null,
+      city: company.city != null ? company.city as String : null,
+      country: company.country != null ? company.country as String : null,
+      about_company: company.about_company != null ? company.about_company as String : null,
+      rating_distribution: company.rating_distribution != null ? Map<String, dynamic>.from((company.rating_distribution as Map<String, dynamic>)) : null,
+      logo: company.logo != null ? company.logo as String : null
+    );
+  }
+
   factory CompanyModel.fromMap(dynamic map) {
     return CompanyModel(
       company_id: map['company_id'] as String,

@@ -7,7 +7,11 @@ class RequestedCompaniesSearch extends CompanyEvent{
   RequestedCompaniesSearch(this.query);
 }
 
-class RequestedComapnyDetail extends CompanyEvent{}
+class RequestedCompanyDetail extends CompanyEvent{
+  final String domain;
+  RequestedCompanyDetail(this.domain);
+
+}
 
 class RequestedCompaniesList extends CompanyEvent{}
 
