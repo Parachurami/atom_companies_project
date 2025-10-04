@@ -79,7 +79,7 @@ class _CompanyDetailPageState extends ConsumerState<CompanyDetailPage> {
                       IconButton(
                         onPressed: (){
                           Navigator.pop(context);
-                          context.read<CompanyBloc>().add(RequestedResetState());
+                          // context.read<CompanyBloc>().add(RequestedResetState());
                         },
                         style: IconButton.styleFrom(
                           backgroundColor: Colors.black,

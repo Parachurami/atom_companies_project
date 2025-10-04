@@ -21,7 +21,20 @@ class _SearchPageState extends ConsumerState<SearchPage>{
 
   @override
   void initState() {
-    controller = TextEditingController();
+    controller = TextEditingController()..addListener(
+      () async{
+        await Future.delayed(
+                  const Duration(seconds: 3),
+                  () {
+                    if(controller.text.trim().isNotEmpty){
+                      context.read<CompanyBloc>().add(RequestedCompaniesSearch(controller.text.trim()));
+                      return;
+                    }
+                    context.read<CompanyBloc>().add(RequestedResetState());
+                  },
+                );
+      },
+    );
     focusNode = FocusNode()..requestFocus();
     super.initState();
   }
@@ -34,6 +47,7 @@ class _SearchPageState extends ConsumerState<SearchPage>{
   }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -82,16 +96,7 @@ class _SearchPageState extends ConsumerState<SearchPage>{
               focusNode: focusNode,
               controller: controller,
               onChanged: (value) async{
-                await Future.delayed(
-                  const Duration(seconds: 3),
-                  () {
-                    if(value.trim().isNotEmpty){
-                      context.read<CompanyBloc>().add(RequestedCompaniesSearch(value.trim()));
-                      return;
-                    }
-                    context.read<CompanyBloc>().add(RequestedResetState());
-                  },
-                );
+                
               },
             ),
             Expanded(
